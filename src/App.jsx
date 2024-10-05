@@ -8,8 +8,6 @@ import NewTask from './pages/newtask/NewTask'
 import Rootlayouts from './Layouts/Rootlayouts'
 
 function App() {
-  
-
   return (
    <BrowserRouter>
    <Routes>
