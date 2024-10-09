@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const NewTask = () => {
   const {register, handleSubmit, reset, formState:{errors}} = useForm()
   const [loading, setLoading] = useState(false)
@@ -16,11 +17,8 @@ const NewTask = () => {
   const navigate = useNavigate()
 
   const onSubmit = async (data) => {
-  
-
     try {
       console.log(data);
-      
       setLoading(true)
       setError(null)
       const res = await axios.post(`${baseUrl}/api/v1/task`, {
