@@ -1,9 +1,38 @@
-import React from 'react'
+
 import { Link } from 'react-router-dom';
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const MyTask = () => {
+  const baseUrl = import.meta.env.VITE_BASE_URL
+  const [allTask, setAllTAsk] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  const fetchAllTask = async () => {
+    try {
+      setLoading(true)
+      const res = await axios.get(`${baseUrl}/api/v1/task`)
+    console.log(res);
+    if(res.status === 201){
+      setAllTAsk(res.data)
+    }
+    } catch (error) {
+     console.log(error);
+    }finally{
+      setLoading(false)
+    }
+    
+  }
+
+  useEffect(()=>{
+    fetchAllTask()
+  },[])
+
+
+
+
   return (
     <div className='w-[80%] container mx-auto '>
       <div className='flex flex-row py-10 justify-between items-center font-semibold'>
@@ -21,7 +50,7 @@ const MyTask = () => {
           <span className='text-rose-300'> Urgent</span>
         </div>
         <div className='flex flex-row gap-5'>
-          <button className='bg-purple-800 text-white py-2 px-6 rounded-md flex items-center gap-2'>     <FiEdit /> Edit</button>
+          <Link to={`edittask/`}  className='bg-purple-800 text-white py-2 px-6 rounded-md flex items-center gap-2'>     <FiEdit /> Edit</Link>
           <button className='text-purple-800 border-purple-800 border py-2 px-6 rounded-md  flex items-center gap-2'>  <RiDeleteBinLine /> Delete</button>
         </div>
        </div>

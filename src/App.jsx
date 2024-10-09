@@ -14,7 +14,7 @@ function App() {
     <Route element={<Rootlayouts/>}>
     <Route path='/' element={<Home />}/>
     <Route path='/mytask' element={<MyTask/>}/>
-    <Route path='/edittask' element={<EditTask/>}/>
+    <Route path='/edittask/:_id' element={<EditTask/>}/>
     <Route path='/newtask' element={<NewTask/>}/>
     </Route>
    </Routes>
